@@ -30,7 +30,6 @@ public class Rocket : MonoBehaviour
         Thrust();
         Rotate();
     }
-
     public void Thrust()
     {
 
