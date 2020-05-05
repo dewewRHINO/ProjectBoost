@@ -7,6 +7,11 @@ public class Rocket : MonoBehaviour
 
     [SerializeField] float rcsThrust = 100f;
     [SerializeField] float mainThrust = 100f;
+    [SerializeField] AudioClip mainEngine;
+    [SerializeField] AudioClip death;
+    [SerializeField] AudioClip nextLevelSound;
+
+
 
     Rigidbody rigidBody;
     AudioSource m_MyAudioSource;
@@ -31,33 +36,36 @@ public class Rocket : MonoBehaviour
     {
         if (state == State.Alive)
         {
-            Thrust();
-            Rotate();
+            RespondToThrust();
+            RespondToRotate();
         }
     }
-    public void Thrust()
+    public void RespondToThrust()
     {
-
-        float thrust = mainThrust * Time.deltaTime;
-
         if (Input.GetKey(KeyCode.Space))
         {
-
-            rigidBody.AddRelativeForce(Vector3.up * thrust);
-
-            if (!m_MyAudioSource.isPlaying)
-            {
-
-                m_MyAudioSource.Play();
-
-            }
+            ApplyThrust();
         }
         else
         {
             m_MyAudioSource.Stop();
         }
     }
-    public void Rotate()
+
+    private void ApplyThrust()
+    {
+            rigidBody.AddRelativeForce(Vector3.up * mainThrust);
+
+            if (!m_MyAudioSource.isPlaying)
+            {
+
+                m_MyAudioSource.PlayOneShot(mainEngine);
+
+            }
+        
+    }
+
+    public void RespondToRotate()
     {
 
         //Take Manual control of rotation
@@ -106,6 +114,8 @@ public class Rocket : MonoBehaviour
     private void LoadDeath()
     {
         state = State.Dying;
+        m_MyAudioSource.Stop();
+        m_MyAudioSource.PlayOneShot(death);
         //Kill the Rocket Ship
         Invoke("LoadFirstScene", 1f);
     }
@@ -117,6 +127,8 @@ public class Rocket : MonoBehaviour
 
     private void LoadNextScene()
     {
+        m_MyAudioSource.Stop();
+        m_MyAudioSource.PlayOneShot(nextLevelSound);
         SceneManager.LoadScene(1);
     }
 }
