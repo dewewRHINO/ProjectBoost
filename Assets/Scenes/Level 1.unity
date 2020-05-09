@@ -121,6 +121,27 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &44701857 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 951384951418326052, guid: c7310dde9ff6a1b43afa7aeb19ebdae2,
+    type: 3}
+  m_PrefabInstance: {fileID: 2385902237598006326}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &44701862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44701857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e22652babbeb54149b7a226e2add7d1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementVector: {x: 40, y: 0, z: 0}
+  period: 10
+  movementFactor: 0
 --- !u!108 &705507994 stripped
 Light:
   m_CorrespondingSourceObject: {fileID: 7820790306476395226, guid: 8671d1a9d29d7744aaffbe8eb9dbf9d5,
@@ -238,14 +259,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2097697146, guid: 4ade929ef8c9e9e48907ee416ff73612, type: 3}
-      propertyPath: death
-      value: 
-      objectReference: {fileID: 8300000, guid: ef8cfdff948047c449ffb6fb5a4908ad, type: 3}
-    - target: {fileID: 2097697146, guid: 4ade929ef8c9e9e48907ee416ff73612, type: 3}
-      propertyPath: nextLevelSound
-      value: 
-      objectReference: {fileID: 8300000, guid: ba709e6227332f14fbf21312a84ae9b3, type: 3}
     - target: {fileID: 3637572035721228479, guid: 4ade929ef8c9e9e48907ee416ff73612,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -616,6 +629,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 951384951418326072, guid: c7310dde9ff6a1b43afa7aeb19ebdae2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12
+      objectReference: {fileID: 0}
     - target: {fileID: 2385902238609459086, guid: c7310dde9ff6a1b43afa7aeb19ebdae2,
         type: 3}
       propertyPath: m_Name
