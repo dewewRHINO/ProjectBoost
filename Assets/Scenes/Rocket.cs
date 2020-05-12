@@ -17,6 +17,8 @@ public class Rocket : MonoBehaviour
 
     [SerializeField] float delayTime = 2f;
 
+    bool bruh = false;
+
 
 
     Rigidbody rigidBody;
@@ -90,6 +92,15 @@ public class Rocket : MonoBehaviour
             {
                 transform.Rotate(rotationThisFrame * -Vector3.forward);
             }
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                LoadNextScene();
+            }
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                bruh = true;
+            } else { bruh = false; }
+            
         }
 
         rigidBody.freezeRotation = false;
@@ -114,8 +125,11 @@ public class Rocket : MonoBehaviour
                 Invoke("LoadNextScene", delayTime); 
                 break;
             default:
-                deathParticles.Play();
-                LoadDeath();
+                if (!bruh)
+                {
+                    deathParticles.Play();
+                    LoadDeath();
+                }  
                 break;
         }
     }
@@ -136,8 +150,18 @@ public class Rocket : MonoBehaviour
 
     private void LoadNextScene()
     {
+        int currentIndex = SceneManager.GetActiveScene().buildIndex;
         m_MyAudioSource.Stop();
         m_MyAudioSource.PlayOneShot(nextLevelSound);
-        SceneManager.LoadScene(1);
+        
+
+        if (currentIndex + 1 == SceneManager.sceneCountInBuildSettings)
+        {
+            LoadFirstScene();
+        }
+        else
+        {
+            SceneManager.LoadScene(currentIndex + 1);
+        }
     }
 }
